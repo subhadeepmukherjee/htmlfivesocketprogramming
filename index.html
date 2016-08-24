@@ -1,0 +1,26 @@
+﻿<html>
+    <head>
+        <script>
+            var workerThread;
+            function OnButtonClick() {
+                workerThread = new Worker("longrunningtask.js");
+                workerThread.onmessage = function (evt) {
+                    document.getElementById("ResultArea").innerHTML +=
+                        "<p>" + evt.data + "</p>";
+                };
+                workerThread.postMessage(10000)
+            }
+            function OnTerminateButtonClick() {
+                workerThread.terminate();
+            }
+        </script>
+
+    </head>
+    <body>
+        <div>
+            <button onclick="OnButtonClick()">RunWorkerThread</button>
+            <div id="ResultArea" style="height:100px;overflow:scroll"></div>
+            <button onclick="OnTerminateButtonClick()">Terminate</button>
+        </div>
+    </body>
+ </html>

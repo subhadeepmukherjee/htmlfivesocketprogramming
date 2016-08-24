@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://wwww.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script>
+            function OnButtonClick() {
+                var xmlHttp = new XMLHttpRequest()
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4) {
+                        if (xmlHttp.status == 200) {
+                            document.getElementById("result").innerHTML
+                                += xmlHttp.responseText;
+
+                        }
+
+                    }
+                };
+                xmlHttp.open("GET", "http://localhost:1861/Handler.ashx", true);
+                xmlHttp.send();
+            }
+
+        </script>
+    </head>
+    <body>
+        <botton onclick="OnButtonClick();">Click Me</botton>
+        <div id="result"></div>
+
+    </body>
+</html>
